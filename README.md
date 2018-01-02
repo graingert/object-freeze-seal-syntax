@@ -27,11 +27,13 @@ const foo = {#
 <details><summary>Click here to see the desugared version</summary>
 
 ```js
-const foo = Object.freeze({
-  a: Object.freeze({
-    b: Object.freeze({
-      c: Object.freeze({
-        d: Object.freeze({
+const freeze = obj => Object.freeze(Object.create(null), Object.assign(o, obj));
+
+const foo = freeze({
+  a: freeze({
+    b: freeze({
+      c: freeze({
+        d: freeze({
           e: Object.freeze([ "some string!" ])
         })
       })
@@ -61,11 +63,12 @@ const foo = {|
 <details><summary>Click here to see the desugared version</summary>
 
 ```js
-const foo = Object.seal({
-  a: Object.seal({
-    b: Object.seal({
-      c: Object.seal({
-        d: Object.seal({
+const seal = obj => Object.seal(Object.create(null), Object.assign(o, obj));
+const foo = seal({
+  a: seal({
+    b: seal({
+      c: seal({
+        d: seal({
           e: Object.seal(["some string!"])
         })
       })
